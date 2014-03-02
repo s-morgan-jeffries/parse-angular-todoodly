@@ -1,0 +1,128 @@
+// Custom CSS goes here
+footer {
+  text-align: center;
+  //  border-top: solid #000000;
+}
+
+//@debug pull-left;
+
+.pull-left-sm-and-up {
+  @media screen and (min-width: $screen-xs + 1) {
+//    @extend .pull-left;
+    float: left !important;
+  }
+}
+
+.pull-right-sm-and-up {
+  @media screen and (min-width: $screen-xs + 1) {
+    float: right !important;
+  }
+}
+
+.center-block-xs {
+  @media screen and (max-width: $screen-xs) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
+.nav.center-block-xs > li {
+  @media screen and (max-width: $screen-xs) {
+    float: none;
+  }
+  &>button {
+    @media screen and (max-width: $screen-xs) {
+      width: 100%;
+    }
+  }
+}
+
+.btn-link {
+  color: $link-color;
+  text-decoration: none;
+  background: transparent;
+  &:hover, &:focus {
+    color: $gray-dark;
+  }
+  &:active, &:hover {
+    outline: 0;
+  }
+  .nav > li > & {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+  }
+  .nav > li > &:hover, .nav > li > &:focus {
+    text-decoration: none;
+    background-color: $gray-lighter;
+  }
+  .nav-pills > li > & {
+    border-radius: 4px;
+  }
+}
+
+.glyphicon-inverse {
+  text-decoration: line-through;
+}
+
+.todo-app {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.todo-content {
+  font-size: 1.25em;
+  display: inline-block;
+  width: 45%;
+  vertical-align: middle;
+}
+
+.add-todo-content {
+  margin-left: 55px;
+}
+
+.button-form {
+  padding: 0px;
+}
+
+
+.button-form__button {
+  padding: 10px 15px;
+}
+
+.nav > li button:hover {
+  text-decoration: none;
+  background-color: #eeeeee;
+}
+
+.nav-pills > li button {
+  border-radius: 4px;
+}
+
+.button-form--todo {
+  width: 13%;
+  display: inline-block;
+}
+
+.show-container {
+//  text-align: center;
+  > a {
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+  }
+}
+
+.confirm-delete-container {
+  text-align: center;
+  > a, form {
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+    >button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+dist
+.tmp
+.sass-cache
+app/bower_components
+*.sock
+.idea
+.tmp
+todo.js
+.env
+.dev_env
+.prod_env
+heroku
