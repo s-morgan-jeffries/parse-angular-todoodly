@@ -1,0 +1,16 @@
+<div class="row marketing">
+    <form role="form" id="signinform" ng-submit="signin()">
+        <h1>Sign In</h1>
+        <div class="form-group">
+            <label for="signinform-email">Email address</label>
+            <input type="text" id="signinform-email" class="form-control" ng-model="email" placeholder="Enter email" autofocus autocomplete/>
+        </div>
+        <div ng-show="alerts.email" class="alert alert-{{alerts.email.type}}">{{alerts.email.msg}}</div>
+        <div class="form-group">
+            <label for="signinform-password">Password</label>
+            <input type="password" id="signinform-password" class="form-control" ng-model="password" placeholder="Password" />
+        </div>
+        <div ng-show="alerts.password" class="alert alert-{{alerts.password.type}}">{{alerts.password.msg}}</div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
