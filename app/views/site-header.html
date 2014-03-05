@@ -1,12 +1,12 @@
-<header class="header clearfix" role="navigation">
+<header class="header clearfix" role="navigation" ng-controller="SiteHeaderCtrl">
     <h3 class="pull-left-sm-and-up center-block-xs"><a href="/" class="text-muted">ToDoodly!</a></h3>
     <ul class="nav nav-pills pull-right-sm-and-up center-block-xs">
         <li><a class="btn btn-primary" href="#/home">Home</a></li>
         <li><a class="btn" href="#/about">About</a></li>
         <li ng-show="isAuthenticated()"><a class="btn" href="#/profile">Profile</a></li>
         <li ng-show="isAuthenticated()">
-            <form class="button-form" id="signout-form" action="#/signout" method="post">
-                <input type="hidden" name="_method" value="delete"/>
+            <form class="button-form" id="signout-form" ng-submit="signOut()">
+                <!--<input type="hidden" name="_method" value="delete"/>-->
                 <button type="submit" class="btn btn-link button-form__button" form="signout-form">Sign Out</button>
             </form>
         </li>

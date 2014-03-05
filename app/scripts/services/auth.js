@@ -27,7 +27,7 @@ angular.module('parseAngularTodoodlyApp')
     // Public API here
     auth = {
       signUp: function(user) {
-        User.save(user).
+        return User.save(user).
           success(function(data, status, headers, config) {
             sessionToken = data.sessionToken;
             userId = data.objectId;
@@ -51,7 +51,7 @@ angular.module('parseAngularTodoodlyApp')
 
         config.url = parseConfig.baseUrl + '/login?username=' + username + '&password=' + password;
         config.method = 'GET';
-        $http(config)
+        return $http(config)
           .success(function(data, status, headers, config) {
             sessionToken = data.sessionToken;
             userId = data.objectId;
