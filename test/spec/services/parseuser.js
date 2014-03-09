@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: auth', function () {
+describe('Service: parseUser', function () {
 
   // load the service's module
   beforeEach(module('parseAngularTodoodlyApp'));
 
   // instantiate service
-  var auth;
-  beforeEach(inject(function (_auth_) {
-    auth = _auth_;
+  var parseUser;
+  beforeEach(inject(function (_parseUser_) {
+    parseUser = _parseUser_;
   }));
 
   it('should do something', function () {
-    expect(!!auth).toBe(true);
+    expect(!!parseUser).toBe(true);
   });
 
 });

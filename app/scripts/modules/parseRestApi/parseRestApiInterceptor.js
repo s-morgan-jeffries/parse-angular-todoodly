@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('parseAngularTodoodlyApp')
+angular.module('parseRestApi')
   .factory('parseRestApiInterceptor', function ($q, parseConfig) {
     var parseRestApiHeaders = {
       'X-Parse-Application-Id': parseConfig.applicationId,
@@ -14,9 +14,4 @@ angular.module('parseAngularTodoodlyApp')
         return config || $q.when(config);
       }
     };
-  });
-
-angular.module('parseAngularTodoodlyApp')
-  .config(function($httpProvider) {
-    $httpProvider.interceptors.push('parseRestApiInterceptor');
   });

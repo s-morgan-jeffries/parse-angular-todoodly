@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: auth', function () {
+describe('Service: Test', function () {
 
   // load the service's module
   beforeEach(module('parseAngularTodoodlyApp'));
 
   // instantiate service
-  var auth;
-  beforeEach(inject(function (_auth_) {
-    auth = _auth_;
+  var Test;
+  beforeEach(inject(function (_Test_) {
+    Test = _Test_;
   }));
 
   it('should do something', function () {
-    expect(!!auth).toBe(true);
+    expect(!!Test).toBe(true);
   });
 
 });

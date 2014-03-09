@@ -1,0 +1,32 @@
+<section class="todo-app">
+    <header>
+        <form class="form-inline" id="add-todo" ng-submit="addTodo()">
+            <label class="sr-only" for="add-todo-content">New todo</label>
+            <input type="text" class="form-control todo-content add-todo-content" id="add-todo-content" ng-model="addTodoContent" autofocus/>
+            <button class="btn btn-link btn-lg" type="submit" form="add-todo">
+                <span class="sr-only">Add</span>
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </form>
+    </header>
+    <ul ng-show="todos" class="list-unstyled">
+        <li ng-repeat="todo in todos">
+            <form class="button-form button-form--todo" ng-submit="toggleDone(todo.objectId)">
+                <button class="btn btn-link btn-lg" type="submit">
+                    <span class="sr-only" ng-show="todo.isDone">Mark as undone</span>
+                    <span class="glyphicon glyphicon-ok glyphicon-inverse" ng-show="todo.isDone"></span>
+                    <span class="sr-only" ng-hide="todo.isDone">Mark as done</span>
+                    <span class="glyphicon glyphicon-ok" ng-hide="todo.isDone"></span>
+                </button>
+            </form>
+            <strike class="todo-content" ng-show="todo.isDone">{{todo.content}}</strike>
+            <span class="todo-content" ng-hide="todo.isDone">{{todo.content}}</span>
+            <form class="button-form button-form--todo" ng-submit="deleteTodo(todo.objectId)">
+                <button class="btn btn-link btn-lg" type="submit">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <span class="sr-only">Remove</span>
+                </button>
+            </form>
+        </li>
+    </ul>
+</section>

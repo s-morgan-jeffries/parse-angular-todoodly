@@ -1,13 +1,7 @@
 'use strict';
 
-angular.module('parseAngularTodoodlyApp', [
-    'ngCookies',
-    'ngResource',
-    'ngSanitize',
-    'ngRoute',
-    'parseRestApi'
-  ])
-  .config(function ($routeProvider) {
+angular.module('parseAngularTodoodlyApp')
+  .config(function ($routeProvider, session) {
     $routeProvider
       .when('/home', {
         templateUrl: 'views/home.html',
@@ -25,15 +19,7 @@ angular.module('parseAngularTodoodlyApp', [
         templateUrl: 'views/signin.html',
         controller: 'SigninCtrl'
       })
-      .when('/todos', {
-        templateUrl: 'views/todos.html',
-        controller: 'TodosCtrl'
-      })
       .otherwise({
         redirectTo: '/home'
       });
-  })
-  .config(function($httpProvider) {
-    $httpProvider.interceptors.push('parseRestApiInterceptor');
-    $httpProvider.interceptors.push('parseSessionInterceptor');
   });

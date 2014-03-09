@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('parseAngularTodoodlyApp')
-  .factory('session', function () {
-    return {};
+  .factory('session', function (parseSession) {
+    return parseSession;
   });

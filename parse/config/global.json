@@ -1,0 +1,11 @@
+{
+    "applications": {
+        "_default": {
+            "link": "todoodlyDev"
+        }, 
+        "todoodlyDev": {
+            "applicationId": "NnQ8Y9aZ7jcU2oGLzGfbyHJN3bvR08RN1b6oEtQC", 
+            "masterKey": "oIJzLBCxl5VzgwiaXgqsVsoUUZNAPgNa3rM1YlEO"
+        }
+    }
+}

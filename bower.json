@@ -9,7 +9,9 @@
     "angular-cookies": "1.2.6",
     "angular-sanitize": "1.2.6",
     "angular-route": "1.2.6",
-    "parse-js-sdk": "~1.2.16"
+    "parse-js-sdk": "~1.2.16",
+    "lodash": "~2.4.1",
+    "jquery": "~2.1.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",
