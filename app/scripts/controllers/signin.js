@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('parseAngularTodoodlyApp')
-  .controller('SigninCtrl', function ($scope, $location, auth) {
+  .controller('SigninCtrl', function ($scope, $location, User) {
     $scope.signin = function() {
-      auth.signIn(this.email, this.password)
+      User.signIn(this.email, this.password).$promise
         .then(function() {
           $location.path('/todos');
           $location.replace();
-        })
-        .then(null, function() {});
+        });
     };
   });

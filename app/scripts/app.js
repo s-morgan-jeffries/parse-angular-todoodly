@@ -2,7 +2,6 @@
 
 angular.module('parseAngularTodoodlyApp', [
     'ngCookies',
-    'ngResource',
     'ngSanitize',
     'ngRoute',
     'parseRestApi'
@@ -11,7 +10,12 @@ angular.module('parseAngularTodoodlyApp', [
     $routeProvider
       .when('/home', {
         templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        resolve: {
+          auth: function($q, session, auth) {
+            return auth(false, '/todos', true);
+          }
+        }
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -19,15 +23,30 @@ angular.module('parseAngularTodoodlyApp', [
       })
       .when('/signup', {
         templateUrl: 'views/signup.html',
-        controller: 'SignupCtrl'
+        controller: 'SignupCtrl',
+        resolve: {
+          auth: function($q, session, auth) {
+            return auth(false, '/todos', true);
+          }
+        }
       })
       .when('/signin', {
         templateUrl: 'views/signin.html',
-        controller: 'SigninCtrl'
+        controller: 'SigninCtrl',
+        resolve: {
+          auth: function($q, session, auth) {
+            return auth(false, '/todos', true);
+          }
+        }
       })
       .when('/todos', {
         templateUrl: 'views/todos.html',
-        controller: 'TodosCtrl'
+        controller: 'TodosCtrl',
+        resolve: {
+          auth: function($q, session, auth) {
+            return auth(true, '/home', false);
+          }
+        }
       })
       .otherwise({
         redirectTo: '/home'
@@ -35,5 +54,15 @@ angular.module('parseAngularTodoodlyApp', [
   })
   .config(function($httpProvider) {
     $httpProvider.interceptors.push('parseRestApiInterceptor');
-    $httpProvider.interceptors.push('parseSessionInterceptor');
+  })
+  .run(function($rootScope, $location){
+    //If the route change failed due to authentication error, redirect them out
+    $rootScope.$on('$routeChangeError', function(err, current, previous, rejection){
+      if(rejection && rejection.redirectPath) {
+        $location.path(rejection.redirectPath);
+      } else if (rejection && rejection.replacePath) {
+        $location.path(rejection.replacePath);
+        $location.replace();
+      }
+    })
   });

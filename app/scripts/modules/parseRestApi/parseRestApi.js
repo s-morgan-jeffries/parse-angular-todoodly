@@ -1,3 +1,5 @@
 'use strict';
 
-angular.module('parseRestApi', []);
+angular.module('parseRestApi', [
+  'ngResource'
+]);

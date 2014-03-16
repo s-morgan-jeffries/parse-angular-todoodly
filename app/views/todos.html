@@ -9,7 +9,7 @@
             </button>
         </form>
     </header>
-    <ul ng-show="todos" class="list-unstyled">
+    <ul ng-show="todos.length" class="list-unstyled">
         <li ng-repeat="todo in todos">
             <form class="button-form button-form--todo" ng-submit="toggleDone(todo.objectId)">
                 <button class="btn btn-link btn-lg" type="submit">

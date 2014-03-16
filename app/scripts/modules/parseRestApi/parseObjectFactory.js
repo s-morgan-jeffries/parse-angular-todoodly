@@ -11,7 +11,6 @@ angular.module('parseRestApi')
       defaults = _.extend((defaults || {}), {objectId: '@objectId'});
 
       ParseObject = parseAbstractObjectFactory(className, url, defaults, customMethods);
-      ParseObject.name = className;
 
       return ParseObject;
 

@@ -1,16 +1,31 @@
 'use strict';
 
 angular.module('parseRestApi')
-  .factory('parseRestApiInterceptor', function ($q, parseConfig) {
-    var parseRestApiHeaders = {
-      'X-Parse-Application-Id': parseConfig.applicationId,
-      'X-Parse-REST-API-Key': parseConfig.restKey
+  .factory('parseRestApiInterceptor', function ($q, parseApiBaseUrl, parseSession, parseConfig) {
+
+    var parseRestApiHeaders = function() {
+      var headers = {
+        'X-Parse-Application-Id': parseConfig.applicationId,
+        'X-Parse-REST-API-Key': parseConfig.restKey
+      };
+      if (parseSession.isAuthenticated) {
+        headers['X-Parse-Session-Token'] = parseSession.sessionToken;
+      }
+      return headers;
+    };
+
+    var parseApiBaseUrlRegExp = RegExp(parseApiBaseUrl);
+
+    var isParseRequest = function(url) {
+      return parseApiBaseUrlRegExp.test(url);
     };
 
     return {
       request: function(config) {
-        config.headers = config.headers || {};
-        angular.extend(config.headers, parseRestApiHeaders);
+        if (isParseRequest(config.url)) {
+          config.headers = config.headers || {};
+          angular.extend(config.headers, parseRestApiHeaders());
+        }
         return config || $q.when(config);
       }
     };

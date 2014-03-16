@@ -28,6 +28,4 @@ angular.module('parseRestApi')
       return ParseAbstractObject;
 
     };
-
-//    return parseAbstractObjectFactory;
   });

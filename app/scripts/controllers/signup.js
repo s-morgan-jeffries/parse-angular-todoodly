@@ -1,24 +1,24 @@
 'use strict';
 
-angular.module('parseAngularTodoodlyApp')
-  .controller('SignupCtrl', function ($scope, $location, auth) {
-    $scope.signup = function() {
-//      console.log('signup!');
-//      console.log(this.email);
-//      console.log(this.password);
-//      console.log(this.passwordConfirmation);
-      var user = {
-        username: this.email,
-        password: this.password,
-        email: this.email
-      };
+var scope;
 
-      if (this.passwordConfirmation !== this.password) {
-        // do something
-      }
-      auth.signUp(user).success(function() {
-        $location.path('/todos');
-        $location.replace();
-      }).error(function() {});
+angular.module('parseAngularTodoodlyApp')
+  .controller('SignupCtrl', function ($scope, $location, User) {
+    scope = $scope;
+
+    $scope.signup = function() {
+//      $scope.signupform.email.$setValidity('available', true);
+      User.signUp(this.email, this.password, this.email).$promise
+        .then(function() {
+          $location.path('/todos');
+          $location.replace();
+        }, function(res) {
+          var errCode = res.data.code;
+          switch (errCode) {
+            case 202:
+              $scope.signupform.email.$setValidity('available', false);
+              break;
+          }
+        });
     };
   });
