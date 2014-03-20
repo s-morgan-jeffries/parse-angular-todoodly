@@ -34,15 +34,15 @@ setTimeout(function() {
 //  userExists = $injector.get('userExists');
 //  exists = userExists('poopface@mon.key');
 
-//  session = $injector.get('session');
+  session = $injector.get('session');
   User = $injector.get('User');
 ////  var auth = $injector.get('auth');
-  User.signIn('s.morgan.jeffries@gmail.com', 'password').$promise
-    .then(function() {
-      var $location = $injector.get('$location');
-      $location.path('/profile');
-      $location.replace();
-    });
+//  User.signIn('s.morgan.jeffries@gmail.com', 'password').$promise
+//    .then(function() {
+//      var $location = $injector.get('$location');
+//      $location.path('/profile');
+//      $location.replace();
+//    });
 //
 //////  console.log(promise);
 //  promise.then(function() {

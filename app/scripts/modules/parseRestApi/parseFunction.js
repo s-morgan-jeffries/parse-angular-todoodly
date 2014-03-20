@@ -2,7 +2,7 @@
 
 angular.module('parseRestApi')
   .factory('parseFunction', function ($resource, parseConfig) {
-    var parseFunction,
+    var parseFunctionResource,
       url = url = parseConfig.restApiBaseUrl + '/functions/:functionName',
       defaults = {functionName: '@functionName'},
       customMethods = {
@@ -11,13 +11,13 @@ angular.module('parseRestApi')
         }
       };
 
-    parseFunction = $resource(url, defaults, customMethods);
+    parseFunctionResource = $resource(url, defaults, customMethods);
 
-    parseFunction.prototype = {};
+    parseFunctionResource.prototype = {};
 
-    return function(functionName, args) {
+    return function parseFunction(functionName, args) {
       args = args || {};
       args.functionName = functionName;
-      return parseFunction.cloudCall(args);
+      return parseFunctionResource.cloudCall(args);
     };
   });
