@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('parseAngularTodoodlyApp')
-  .directive('siteFooter', function () {
+  .directive('tdSiteHeader', function () {
     return {
-      templateUrl: 'views/site-footer.html',
+      templateUrl: 'views/site-header.html',
       restrict: 'E',
       replace: true
     };

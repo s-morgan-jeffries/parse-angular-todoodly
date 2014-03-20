@@ -17,16 +17,33 @@ angular.module('parseAngularTodoodlyApp')
       this.addTodoContent = '';
     };
 
-    $scope.toggleDone = function(id) {
-      var todo = todos[_.indexOf(_.pluck(todos, 'objectId'), id)];
+    $scope.toggleDone = function(todo) {
       todo.toggleDone();
     };
 
-    $scope.deleteTodo = function(id) {
-      var todoIdx = _.indexOf(_.pluck(todos, 'objectId'), id),
-        todo = todos[todoIdx];
+    $scope.editTodo = function(todo) {
+      $scope.editedTodo = todo;
+      $scope.originalTodoContent = todo.content;
+    };
 
-      todos.splice(todoIdx, 1);
+
+    $scope.doneEditing = function(todo) {
+      $scope.originalTodoContent = $scope.editedTodo = null;
+      todo.content = todo.content.trim();
+      todo.$save();
+
+      if (!todo.content) {
+        $scope.deleteTodo(todo);
+      }
+    };
+
+    $scope.revertEditing = function(todo) {
+      todo.content = $scope.originalTodoContent;
+      $scope.originalTodoContent = $scope.editedTodo = null;
+    };
+
+    $scope.deleteTodo = function(todo) {
+      todos.splice(todos.indexOf(todo), 1);
       todo.$delete();
     };
 

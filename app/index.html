@@ -10,11 +10,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
+    <!-- build_:css styles/vendor.css -->
+    <!-- bower_:css -->
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css({.tmp,app}) styles/main.css -->
+    <!-- build:css({.tmp,app}) styles/style.css -->
     <link rel="stylesheet" href="styles/style.css">
     <!-- endbuild -->
 </head>
@@ -25,9 +25,9 @@
 
     <!-- Add your site or application content here -->
     <div class="container">
-        <site-header></site-header>
+        <td-site-header></td-site-header>
         <main role="main" class="container" ng-view></main>
-        <site-footer></site-footer>
+        <td-site-footer></td-site-footer>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -46,9 +46,8 @@
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- build:js scripts/vendor.js -->
+    <!-- build:js({.tmp,app}) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -56,14 +55,15 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/parse.js -->
     <script src="scripts/modules/parseRestApi/parseRestApi.js"></script>
-    <script src="scripts/modules/parseRestApi/parseApiBaseUrl.js"></script>
+    <script src="scripts/modules/parseRestApi/parseConfig.js"></script>
     <script src="scripts/modules/parseRestApi/parseSession.js"></script>
-    <!--t0d0: Fix interceptor so it configures $httpProvider from the parseRestApi module.-->
+    <!--backburner: Fix interceptor so it configures $httpProvider from the parseRestApi module.-->
     <script src="scripts/modules/parseRestApi/parseRestApiInterceptor.js"></script>
     <script src="scripts/modules/parseRestApi/parseResourceFactory.js"></script>
     <script src="scripts/modules/parseRestApi/parseAbstractObjectFactory.js"></script>
@@ -72,18 +72,22 @@
     <script src="scripts/modules/parseRestApi/parseRole.js"></script>
     <script src="scripts/modules/parseRestApi/parseFile.js"></script>
     <script src="scripts/modules/parseRestApi/parseFunctionFactory.js"></script>
+    <script src="scripts/modules/parseRestApi/parseInitialize.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <!--t0d0: Fix this so you're using providers (so you don't have to specify the AppID or key in advance).-->
-    <script src="scripts/parseConfigDev.js"></script>
+    <script src="scripts/parseRestInitDev.js"></script>
     <script src="scripts/services/session.js"></script>
     <script src="scripts/services/Todo.js"></script>
     <script src="scripts/services/User.js"></script>
-    <!--<script src="scripts/services/Test.js"></script>-->
-    <script src="scripts/directives/siteHeader.js"></script>
-    <script src="scripts/directives/siteFooter.js"></script>
+    <script src="scripts/directives/tdSiteHeader.js"></script>
+    <script src="scripts/directives/tdSiteFooter.js"></script>
+    <script src="scripts/directives/tdMatches.js"></script>
+    <script src="scripts/directives/tdPristineWhileFocused.js"></script>
+    <script src="scripts/directives/tdValidOnUpdate.js"></script>
+    <script src="scripts/directives/tdEscape.js"></script>
+    <script src="scripts/directives/tdGiveFocus.js"></script>
     <script src="scripts/controllers/home.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/signup.js"></script>
@@ -91,14 +95,11 @@
     <script src="scripts/controllers/siteHeader.js"></script>
     <script src="scripts/controllers/todos.js"></script>
     <script src="scripts/services/auth.js"></script>
-    <script src="scripts/directives/ngMatches.js"></script>
-    <script src="scripts/directives/ngPristineWhileFocused.js"></script>
-    <script src="scripts/services/helloCloud.js"></script>
-    <script src="scripts/services/userExists.js"></script>
-    <script src="scripts/directives/ngValidOnUpdate.js"></script>
+    <script src="scripts/controllers/profile.js"></script>
+    <script src="scripts/filters/iif.js"></script>
     <!-- endbuild -->
 
-    <!--debugging-->
+    <!--devScripts-->
     <script src="bower_components/parse-js-sdk/lib/parse.js"></script>
     <script src="scripts/parseInitDev.js"></script>
     <script src="scripts/debug.js"></script>

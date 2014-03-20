@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('parseAngularTodoodlyApp')
-  .directive('ngMatches', function () {
+  .directive('tdMatches', function () {
     return {
       restrict: 'A',
       require: 'ngModel',
       link: function(scope, elem, attrs, ctrl) {
         var matchesValidator = function(value) {
-          var matchVal = scope[attrs.ngMatches];
+          var matchVal = scope[attrs.tdMatches];
           if (!ctrl.$isEmpty(value) && value !== matchVal) {
             ctrl.$setValidity('matches', false);
             return undefined;

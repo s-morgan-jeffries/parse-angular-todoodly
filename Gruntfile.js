@@ -22,13 +22,15 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'dist',
+      parse: 'parse'
     },
 
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+//        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/scripts/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: true
@@ -121,7 +123,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      parse: {
+        files: [{
+          dot: true,
+          src: [
+            '<%= yeoman.parse %>/public/*'
+          ]
+        }]
+      }
     },
 
     // Add vendor prefixed styles
@@ -147,7 +157,61 @@ module.exports = function (grunt) {
       }
     },
 
-
+    'string-replace': {
+      dist: {
+        options: {
+          replacements: [
+            {
+              pattern: '<script src="bower_components/angular/angular.js"></script>',
+              replacement: '<script src="bower_components/angular/angular.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/angular-resource/angular-resource.js"></script>',
+              replacement: '<script src="bower_components/angular-resource/angular-resource.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/angular-cookies/angular-cookies.js"></script>',
+              replacement: '<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>',
+              replacement: '<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/angular-route/angular-route.js"></script>',
+              replacement: '<script src="bower_components/angular-route/angular-route.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/lodash/dist/lodash.compat.js"></script>',
+              replacement: '<script src="bower_components/lodash/dist/lodash.compat.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>',
+              replacement: '<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>',
+              replacement: '<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>'
+            }, {
+              pattern: '<script src="scripts/parseConfigDev.js"></script>',
+              replacement: '<script src="scripts/parseConfigProd.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/parse-js-sdk/lib/parse.js"></script>',
+              replacement: ''
+            }, {
+              pattern: '<script src="scripts/parseInitDev.js"></script>',
+              replacement: ''
+            }, {
+              pattern: '<script src="scripts/debug.js"></script>',
+              replacement: ''
+            }
+          ]
+        },
+        src: '<%= yeoman.app %>/index.html',
+        dest: '.tmp/index.html'
+//        files: [{
+////          dot: true,
+////          expand: true,
+////          flatten: true,
+////          cwd: '<%= yeoman.app %>',
+//          src: '<%= yeoman.app %>/index.html',
+//          dest: '.tmp/index.html'
+//        }]
+      }
+    },
 
 
     // Compiles Sass to CSS and generates necessary files if requested
@@ -197,7 +261,8 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '<%= yeoman.app %>/index.html',
+//      html: '<%= yeoman.app %>/index.html',
+      html: '.tmp/index.html',
       options: {
         dest: '<%= yeoman.dist %>'
       }
@@ -282,6 +347,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
+            '!index.html',
             'views/{,*/}*.html',
             'bower_components/**/*',
             'images/{,*/}*.{webp}',
@@ -292,6 +358,11 @@ module.exports = function (grunt) {
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
+        }, {
+          expand: true,
+          cwd: '.tmp',
+          dest: '<%= yeoman.dist %>',
+          src: ['index.html']
         }]
       },
       styles: {
@@ -299,6 +370,22 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      parse: {
+        expand: true,
+        dest: '<%= yeoman.parse %>/public/',
+        src: [
+          '*',
+          'bower_components/**/fonts{,/**}/*',
+          'bower_components/es5-shim/es5-shim.js',
+          'bower_components/json3/lib/json3.min.js',
+          'images/*',
+          'scripts/*',
+          'styles/*',
+          'views/*',
+          '!robots.txt'
+        ],
+        cwd: '<%= yeoman.dist %>'
       }
     },
 
@@ -384,6 +471,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'bower-install',
+    'string-replace:dist',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
@@ -396,6 +484,12 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('parse', [
+    'build',
+    'clean:parse',
+    'copy:parse'
   ]);
 
   grunt.registerTask('default', [

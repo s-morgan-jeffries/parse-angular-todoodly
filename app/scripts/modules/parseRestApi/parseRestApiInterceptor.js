@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('parseRestApi')
-  .factory('parseRestApiInterceptor', function ($q, parseApiBaseUrl, parseSession, parseConfig) {
+  .factory('parseRestApiInterceptor', function ($q, parseSession, parseConfig) {
 
     var parseRestApiHeaders = function() {
       var headers = {
@@ -14,7 +14,7 @@ angular.module('parseRestApi')
       return headers;
     };
 
-    var parseApiBaseUrlRegExp = RegExp(parseApiBaseUrl);
+    var parseApiBaseUrlRegExp = RegExp(parseConfig.restApiBaseUrl);
 
     var isParseRequest = function(url) {
       return parseApiBaseUrlRegExp.test(url);

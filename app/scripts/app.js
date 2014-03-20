@@ -4,6 +4,7 @@ angular.module('parseAngularTodoodlyApp', [
     'ngCookies',
     'ngSanitize',
     'ngRoute',
+    'ui.bootstrap',
     'parseRestApi'
   ])
   .config(function ($routeProvider) {
@@ -12,9 +13,9 @@ angular.module('parseAngularTodoodlyApp', [
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
         resolve: {
-          auth: function($q, session, auth) {
+          auth: ['$q', 'session', 'auth', function($q, session, auth) {
             return auth(false, '/todos', true);
-          }
+          }]
         }
       })
       .when('/about', {
@@ -25,35 +26,41 @@ angular.module('parseAngularTodoodlyApp', [
         templateUrl: 'views/signup.html',
         controller: 'SignupCtrl',
         resolve: {
-          auth: function($q, session, auth) {
+          auth: ['$q', 'session', 'auth', function($q, session, auth) {
             return auth(false, '/todos', true);
-          }
+          }]
         }
       })
       .when('/signin', {
         templateUrl: 'views/signin.html',
         controller: 'SigninCtrl',
         resolve: {
-          auth: function($q, session, auth) {
+          auth: ['$q', 'session', 'auth', function($q, session, auth) {
             return auth(false, '/todos', true);
-          }
+          }]
         }
       })
       .when('/todos', {
         templateUrl: 'views/todos.html',
         controller: 'TodosCtrl',
         resolve: {
-          auth: function($q, session, auth) {
+          auth: ['$q', 'session', 'auth', function($q, session, auth) {
             return auth(true, '/home', false);
-          }
+          }]
+        }
+      })
+      .when('/profile', {
+        templateUrl: 'views/profile.html',
+        controller: 'ProfileCtrl',
+        resolve: {
+          auth: ['$q', 'session', 'auth', function($q, session, auth) {
+            return auth(true, '/home', false);
+          }]
         }
       })
       .otherwise({
         redirectTo: '/home'
       });
-  })
-  .config(function($httpProvider) {
-    $httpProvider.interceptors.push('parseRestApiInterceptor');
   })
   .run(function($rootScope, $location){
     //If the route change failed due to authentication error, redirect them out
@@ -65,4 +72,7 @@ angular.module('parseAngularTodoodlyApp', [
         $location.replace();
       }
     })
+  })
+  .config(function($httpProvider) {
+    $httpProvider.interceptors.push('parseRestApiInterceptor');
   });

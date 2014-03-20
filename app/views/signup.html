@@ -13,7 +13,7 @@
                    autofocus
                    autocomplete
                    required
-                   ng-pristine-while-focused
+                   td-pristine-while-focused
                    ng-valid-on-update="available"/>
         </div>
         <div ng-show="signupform.email.$dirty && signupform.email.$error.required"
@@ -32,7 +32,7 @@
                    ng-model="password"
                    placeholder="Enter password"
                    ng-minlength="5"
-                   ng-pristine-while-focused
+                   td-pristine-while-focused
                    required/>
         </div>
         <div ng-show="signupform.password.$dirty && signupform.password.$error.required"
@@ -47,8 +47,8 @@
                    class="form-control"
                    name="passwordConfirmation"
                    ng-model="passwordConfirmation"
-                   ng-matches="password"
-                   ng-pristine-while-focused
+                   td-matches="password"
+                   td-pristine-while-focused
                    placeholder="Re-enter password"
                    required/>
         </div>

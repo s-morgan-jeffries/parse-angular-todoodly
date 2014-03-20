@@ -1,30 +1,23 @@
 'use strict';
 
-var pf;
-
 angular.module('parseRestApi')
-  .factory('parseFunctionFactory', function ($q, $resource, parseApiBaseUrl) {
-
-    return function parseFunctionFactory(functionName, defaultArgs) {
-      var parseFunction,
-        url = url = parseApiBaseUrl + '/functions/' + functionName,
-        defaults = {},
-        customMethods = {
-          cloudCall: {
-            method:'POST'
-          }
-        };
-
-      parseFunction = $resource(url, defaults, customMethods);
-
-      parseFunction.prototype = {};
-
-      return function(args) {
-        args = args || {};
-        angular.forEach(defaultArgs, function(val, key) {
-          args[key] = args[key] || val;
-        });
-        return parseFunction.cloudCall(args);
+  .factory('parseFunction', function ($resource, parseConfig) {
+    var parseFunction,
+      url = url = parseConfig.restApiBaseUrl + '/functions/:functionName',
+      defaults = {functionName: '@functionName'},
+      customMethods = {
+        cloudCall: {
+          method:'POST'
+        }
       };
+
+    parseFunction = $resource(url, defaults, customMethods);
+
+    parseFunction.prototype = {};
+
+    return function(functionName, args) {
+      args = args || {};
+      args.functionName = functionName;
+      return parseFunction.cloudCall(args);
     };
   });

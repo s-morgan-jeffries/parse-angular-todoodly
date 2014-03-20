@@ -20,20 +20,29 @@ var $injector,
 var helloCloud,
   hello;
 
+var parseFunction;
+
 setTimeout(function() {
   var el = angular.element(document.body);
   $injector = el.injector();
   $scope = el.scope();
 
-  helloCloud = $injector.get('helloCloud');
-  hello = helloCloud();
-  userExists = $injector.get('userExists');
-  exists = userExists('poopface@mon.key');
+//  helloCloud = $injector.get('helloCloud');
+//  hello = helloCloud();
+  parseFunction = $injector.get('parseFunction');
+  hello = parseFunction('hello');
+//  userExists = $injector.get('userExists');
+//  exists = userExists('poopface@mon.key');
 
 //  session = $injector.get('session');
-//  User = $injector.get('User');
+  User = $injector.get('User');
 ////  var auth = $injector.get('auth');
-//  promise = User.signIn('s.morgan.jeffries@gmail.com', 'password').$promise;
+  User.signIn('s.morgan.jeffries@gmail.com', 'password').$promise
+    .then(function() {
+      var $location = $injector.get('$location');
+      $location.path('/profile');
+      $location.replace();
+    });
 //
 //////  console.log(promise);
 //  promise.then(function() {

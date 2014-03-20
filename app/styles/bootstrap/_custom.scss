@@ -108,7 +108,7 @@ footer {
 
 .show-container {
 //  text-align: center;
-  > a {
+  > .btn {
     display: block;
     width: 50%;
     margin: 10px auto;
@@ -125,4 +125,8 @@ footer {
       width: 100%;
     }
   }
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }

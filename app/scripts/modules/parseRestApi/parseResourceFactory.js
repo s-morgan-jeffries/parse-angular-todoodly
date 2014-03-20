@@ -6,10 +6,6 @@ angular.module('parseRestApi')
     return function parseResourceFactory(url, defaults, customMethods) {
       var ParseResource;
 
-//      console.log(url);
-//      console.log(defaults);
-//      console.log(customMethods);
-
       customMethods = customMethods || {};
 
       customMethods.query = {
@@ -34,7 +30,6 @@ angular.module('parseRestApi')
         method:'PUT'
       };
 
-//      console.log(customMethods);
       ParseResource = $resource(url, defaults, customMethods);
 
       // Have to do something smart here so that:

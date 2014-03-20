@@ -1,13 +1,13 @@
 'use strict';
 
-var scope;
+//var scope;
 
 angular.module('parseAngularTodoodlyApp')
   .controller('SignupCtrl', function ($scope, $location, User) {
-    scope = $scope;
+
+//    scope = $scope;
 
     $scope.signup = function() {
-//      $scope.signupform.email.$setValidity('available', true);
       User.signUp(this.email, this.password, this.email).$promise
         .then(function() {
           $location.path('/todos');

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('parseAngularTodoodlyApp')
-  .directive('ngPristineWhileFocused', function () {
+  .directive('tdPristineWhileFocused', function () {
     return {
       restrict: 'A',
       require: 'ngModel',
@@ -21,7 +21,7 @@ angular.module('parseAngularTodoodlyApp')
 
         elem.on('focus', setPristine);
         ctrl.$parsers.push(setPristine);
-        elem.on('blur', setDirty);
+        elem.on('change', setDirty);
       }
     };
   });

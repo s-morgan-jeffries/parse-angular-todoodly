@@ -6,6 +6,10 @@
         "todoodlyDev": {
             "applicationId": "NnQ8Y9aZ7jcU2oGLzGfbyHJN3bvR08RN1b6oEtQC", 
             "masterKey": "oIJzLBCxl5VzgwiaXgqsVsoUUZNAPgNa3rM1YlEO"
+        }, 
+        "todoodlyProd": {
+            "applicationId": "EyFXIlvfGNpyMxSsKX2PuEowMFt8TwnA012jAr8P", 
+            "masterKey": "VJgRWv8Goq2ftv6HWtoMht7JnvZtzOPlTJ35cMed"
         }
     }, 
     "global": {

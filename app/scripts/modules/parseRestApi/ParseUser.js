@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('parseRestApi')
-  .factory('ParseUser', function (parseAbstractObjectFactory, parseApiBaseUrl, parseSession) {
-    var url = parseApiBaseUrl + '/:root/:objectId',
+  .factory('ParseUser', function(parseAbstractObjectFactory, parseConfig, parseSession) {
+    var url = parseConfig.restApiBaseUrl + '/:root/:objectId',
       defaults = {root: 'users', objectId: '@objectId'},
       ParseUser = parseAbstractObjectFactory('_User', url, defaults),
       currentUser;

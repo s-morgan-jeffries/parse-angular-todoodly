@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('parseRestApi')
-  .factory('parseObjectFactory', function (parseAbstractObjectFactory, parseApiBaseUrl) {
+  .factory('parseObjectFactory', function (parseAbstractObjectFactory, parseConfig) {
 
     return function parseObjectFactory(className, defaults, customMethods) {
       var ParseObject,
-        url = parseApiBaseUrl + '/classes/' + className + '/:objectId';
+        url = parseConfig.restApiBaseUrl + '/classes/' + className + '/:objectId';
 
       customMethods = customMethods || {};
       defaults = _.extend((defaults || {}), {objectId: '@objectId'});

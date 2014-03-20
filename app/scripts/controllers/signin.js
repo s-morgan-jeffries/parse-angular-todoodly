@@ -7,6 +7,14 @@ angular.module('parseAngularTodoodlyApp')
         .then(function() {
           $location.path('/todos');
           $location.replace();
+        }, function(res) {
+          var errCode = res.data.code;
+          switch (errCode) {
+            case 101:
+              $scope.signinform.email.$setValidity('registered', false);
+              $scope.signinform.password.$setValidity('registered', false);
+              break;
+          }
         });
     };
   });
