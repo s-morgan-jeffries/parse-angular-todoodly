@@ -23,8 +23,8 @@
                 </button>
             </div>
             <div ng-show="todo===editedTodo">
-                <form ng-submit="doneEditing(todo)">
-                    <input class="todo-content"
+                <form class="form-inline" ng-submit="doneEditing(todo)">
+                    <input class="form-control todo-content edit-todo-content"
                            ng-trim="false"
                            ng-model="todo.content"
                            td-escape="revertEditing(todo)"

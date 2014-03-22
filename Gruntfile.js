@@ -162,6 +162,9 @@ module.exports = function (grunt) {
         options: {
           replacements: [
             {
+              pattern: '<script src="bower_components/ng-file-upload/angular-file-upload-shim.js"></script>',
+              replacement: '<script src="bower_components/ng-file-upload/angular-file-upload-shim.min.js"></script>'
+            }, {
               pattern: '<script src="bower_components/angular/angular.js"></script>',
               replacement: '<script src="bower_components/angular/angular.min.js"></script>'
             }, {
@@ -186,8 +189,17 @@ module.exports = function (grunt) {
               pattern: '<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>',
               replacement: '<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>'
             }, {
-              pattern: '<script src="scripts/parseConfigDev.js"></script>',
-              replacement: '<script src="scripts/parseConfigProd.js"></script>'
+              pattern: '<script src="bower_components/ngstorage/ngStorage.js"></script>',
+              replacement: '<script src="bower_components/ngstorage/ngStorage.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>',
+              replacement: '<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>'
+            }, {
+              pattern: '<script src="bower_components/ng-file-upload/angular-file-upload.js"></script>',
+              replacement: '<script src="bower_components/ng-file-upload/angular-file-upload.min.js"></script>'
+            }, {
+              pattern: '<script src="scripts/parseRestInitDev.js"></script>',
+              replacement: '<script src="scripts/parseRestInitProd.js"></script>'
             }, {
               pattern: '<script src="bower_components/parse-js-sdk/lib/parse.js"></script>',
               replacement: ''

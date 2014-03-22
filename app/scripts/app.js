@@ -4,8 +4,10 @@ angular.module('parseAngularTodoodlyApp', [
     'ngCookies',
     'ngSanitize',
     'ngRoute',
+    'ngStorage',
     'ui.bootstrap',
-    'parseRestApi'
+    'parseRestApi',
+    'angularFileUpload'
   ])
   .config(function ($routeProvider) {
     $routeProvider

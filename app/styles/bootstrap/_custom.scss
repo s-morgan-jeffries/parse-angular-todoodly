@@ -8,7 +8,7 @@ footer {
 
 .pull-left-sm-and-up {
   @media screen and (min-width: $screen-xs + 1) {
-//    @extend .pull-left;
+    //    @extend .pull-left;
     float: left !important;
   }
 }
@@ -70,23 +70,26 @@ footer {
 .todo-app {
   max-width: 400px;
   margin: 0 auto;
-}
-
-.todo-content {
-  font-size: 1.25em;
-  display: inline-block;
-  width: 45%;
-  vertical-align: middle;
+  .todo-content {
+    display: inline-block;
+    font-size: 1.25em;
+    vertical-align: middle;
+    width: 55%;
+  }
 }
 
 .add-todo-content {
   margin-left: 55px;
 }
 
+.edit-todo-content {
+  margin-left: 55px;
+  height: 45px;
+}
+
 .button-form {
   padding: 0px;
 }
-
 
 .button-form__button {
   padding: 10px 15px;
@@ -107,7 +110,7 @@ footer {
 }
 
 .show-container {
-//  text-align: center;
+  //  text-align: center;
   > .btn {
     display: block;
     width: 50%;

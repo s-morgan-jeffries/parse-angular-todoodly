@@ -1,46 +1,33 @@
 'use strict';
 
 angular.module('parseRestApi')
-  .factory('ParseUser', function($window, parseAbstractObjectFactory, parseConfig, parseSession) {
+  .factory('ParseUser', function(parseAbstractObjectFactory, parseConfig, parseSession) {
     var url = parseConfig.restApiBaseUrl + '/:root/:objectId',
       defaults = {root: 'users', objectId: '@objectId'},
       ParseUser = parseAbstractObjectFactory('_User', url, defaults);
 
-    (function() {
-      var currentUser;
-
-      Object.defineProperty(parseSession, 'user', {
-        enumerable: true,
-        configurable: false,
-        get: function() {
-          return currentUser || (currentUser = new ParseUser(JSON.parse($window.sessionStorage.getItem('user'))));
-        },
-        set: function(val) {
-          currentUser = val;
-          val.$promise.then(function() {
-            $window.sessionStorage.setItem('user', JSON.stringify(val));
-          });
-        }
-      });
-    }());
-
-//    parseSession.addProps('user');
+    // parseSession.user is a ParseUser instance. This function only runs once, at startup. At that point,
+    // parseSession.user will be restored from the sessionStore if it exists. If it doesn't, it will be undefined. If
+    // it's been explicitly set to null, the first expression will evaluate to falsey, so it will stay null. If it
+    // exists and is an object, it will be instantiated as a new ParseUser. The reason for this is that
+    // serializing-deserializing removes methods, so we have to re-instantiate it in order to use it.
+    parseSession.user = parseSession.user && new ParseUser(parseSession.user);
 
     Object.defineProperty(parseSession, 'sessionToken', {
       get: function() {return this.user && this.user.sessionToken;},
-      enumerable: true,
+      enumerable: false,
       configurable: false
     });
 
     Object.defineProperty(parseSession, 'userId', {
       get: function() {return this.user && this.user.objectId;},
-      enumerable: true,
+      enumerable: false,
       configurable: false
     });
 
     Object.defineProperty(parseSession, 'isAuthenticated', {
       get: function() {return !!this.userId;},
-      enumerable: true,
+      enumerable: false,
       configurable: false
     });
 
