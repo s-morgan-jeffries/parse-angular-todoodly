@@ -8,7 +8,9 @@ angular.module('parseAngularTodoodlyApp')
     }
 
     var user = session.user,
-      todos = $scope.todos = user.getTodos();
+      todos = $scope.todos = session.todos;
+
+    user.getTodos();
 
     $scope.addTodo = function() {
       var todo = user.addTodo(this.addTodoContent);
@@ -26,12 +28,10 @@ angular.module('parseAngularTodoodlyApp')
       $scope.originalTodoContent = todo.content;
     };
 
-
     $scope.doneEditing = function(todo) {
       $scope.originalTodoContent = $scope.editedTodo = null;
       todo.content = todo.content.trim();
       todo.$save();
-
       if (!todo.content) {
         $scope.deleteTodo(todo);
       }

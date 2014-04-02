@@ -9,7 +9,7 @@
             </button>
         </form>
     </header>
-    <ul ng-show="todos.length" class="list-unstyled">
+    <ul ng-show="todos.length" class="list-unstyled" ng-animate="'move'">
         <li ng-repeat="todo in todos">
             <div ng-hide="todo===editedTodo">
                 <button class="btn btn-link btn-lg" type="button" ng-click="toggleDone(todo)">

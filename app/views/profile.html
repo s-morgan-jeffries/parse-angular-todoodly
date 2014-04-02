@@ -1,5 +1,64 @@
+<div class="row marketing">
+    <form class="form-horizontal" role="form" name="profileform" novalidate>
+        <h3 class="font-grow">Account Details</h3>
+        <!--<div ng-show="profileform.$dirty && !!profileform.$error.registered"-->
+             <!--class="alert alert-danger">Could not sign in. Verify that email and password are correct.</div>-->
+        <!--Email-->
+        <div class="form-group">
+            <label class="col-xs-3 control-label" for="profileform-email">Email address</label>
+            <div class="col-xs-4" ng-hide="editedProp==='email'" ng-dblclick="editUser('email')">
+                <p class="form-control form-control--inactive">{{user.email}}</p>
+            </div>
+            <div class="col-xs-3" ng-hide="editedProp==='email'">
+                <span class="glyphicon glyphicon-ok"></span>
+            </div>
+            <div class="col-xs-9" ng-show="editedProp==='email'">
+                <input type="email"
+                       id="profileform-email"
+                       class="form-control"
+                       name="email"
+                       ng-model="user.email"
+                       placeholder="Enter email"
+                       autofocus
+                       autocomplete
+                       required
+                       td-escape="revertEditing()"
+                       td-enter="doneEditing()"
+                       ng-blur="doneEditing()"
+                       td-give-focus="editedProp==='email'"/>
+            </div>
+            <!--<div ng-show="profileform.email.$dirty && profileform.email.$error.email"-->
+            <!--class="alert alert-danger">Must enter a valid email</div>-->
+        </div>
+        <div ng-show="profileform.email.$dirty && profileform.email.$error.required"
+             class="alert alert-danger">Email required</div>
+        <!--<div ng-show="profileform.email.$dirty && profileform.email.$error.required"-->
+             <!--class="alert alert-danger">Email required</div>-->
+        <!--<div ng-show="profileform.email.$dirty && profileform.email.$error.email"-->
+             <!--class="alert alert-danger">Must enter a valid email</div>-->
+        <!--Password-->
+        <!--<div class="form-group">-->
+            <!--<label for="profileform-password">Password</label>-->
+            <!--<input type="password"-->
+                   <!--id="profileform-password"-->
+                   <!--class="form-control"-->
+                   <!--name="password"-->
+                   <!--ng-model="password"-->
+                   <!--placeholder="Enter password"-->
+                   <!--ng-minlength="5"-->
+                   <!--td-pristine-while-focused-->
+                   <!--ng-valid-on-update="registered profileform.email.registered"-->
+                   <!--required/>-->
+        <!--</div>-->
+        <!--<div ng-show="profileform.password.$dirty && profileform.password.$error.required"-->
+             <!--class="alert alert-danger">Password required</div>-->
+        <!--<div ng-show="profileform.password.$dirty && profileform.password.$error.minlength"-->
+             <!--class="alert alert-danger">Password must be at least five characters</div>-->
+        <!--<button type="submit" ng-disabled="profileform.$invalid" class="btn btn-primary">Submit</button>-->
+    </form>
+</div>
+
 <div class="row-marketing show-container">
-    <h1>Account details for {{username}}</h1>
     <!--<a href="#/editUser" class="btn btn-primary">Edit my account</a>-->
     <!--<a href="#/deleteUser" class="btn btn-danger">Delete my account</a>-->
     <!--<button ng-click="uploadPhoto()" class="btn btn-primary">Upload a photo</button>-->

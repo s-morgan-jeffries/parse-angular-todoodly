@@ -13,11 +13,10 @@ angular.module('parseRestApi')
     // serializing-deserializing removes methods, so we have to re-instantiate it in order to use it.
     parseSession.user = parseSession.user && new ParseUser(parseSession.user);
 
-    Object.defineProperty(parseSession, 'sessionToken', {
-      get: function() {return this.user && this.user.sessionToken;},
-      enumerable: false,
-      configurable: false
-    });
+    // If there's no user, explicitly delete the session token
+    if (!parseSession.user) {
+      parseSession.sessionToken = null;
+    }
 
     Object.defineProperty(parseSession, 'userId', {
       get: function() {return this.user && this.user.objectId;},
@@ -26,30 +25,53 @@ angular.module('parseRestApi')
     });
 
     Object.defineProperty(parseSession, 'isAuthenticated', {
-      get: function() {return !!this.userId;},
+      get: function() {return !!this.sessionToken;},
       enumerable: false,
       configurable: false
     });
 
     ParseUser.signUp = function(username, password, email) {
-      return parseSession.user = this.save({
+      var user = this.save({
         username: username,
         password: password,
         email: email
       });
+      user.$promise.then(function() {
+        parseSession.sessionToken = user.sessionToken;
+        delete user.sessionToken;
+      });
+      return parseSession.user = user;
     };
 
     ParseUser.signIn = function(username, password) {
-      return parseSession.user = this.get({root: 'login', username: username, password: password});
+      var user = this.get({root: 'login', username: username, password: password});
+      user.$promise.then(function() {
+        parseSession.sessionToken = user.sessionToken;
+        delete user.sessionToken;
+      });
+      return parseSession.user = user;
     };
 
     ParseUser.signOut = function() {
-      parseSession.user = null;
+      parseSession.sessionToken = parseSession.user = null;
     };
 
     ParseUser.current = function() {
-      return parseSession.user = this.get({objectId: 'me'});
+      var user = this.get({objectId: 'me'});
+      user.$promise.then(function() {
+        parseSession.sessionToken = user.sessionToken;
+        delete user.sessionToken;
+      });
+      return parseSession.user = user;
     };
+
+    Object.defineProperty(parseSession, 'refreshUser', {
+      enumerable: false,
+      configurable: false,
+      value: function() {
+        return ParseUser.current();
+      }
+    });
 
     return ParseUser;
   });

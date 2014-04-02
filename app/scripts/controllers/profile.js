@@ -1,13 +1,53 @@
 'use strict';
 
-//var scope;
+var scope;
+//var p;
 
 angular.module('parseAngularTodoodlyApp')
   .controller('ProfileCtrl', function ($scope, $modal, $location, session) {
 
-//    scope = $scope;
+    scope = $scope;
 
-    $scope.username = session.user.username;
+    var savingUser = false;
+
+    $scope.user = session.user;
+
+    $scope.editUser = function(propName) {
+      this.editedProp = propName;
+      this.origPropVal = this.user[propName];
+    };
+
+    $scope.doneEditing = function() {
+      var propName = this.editedProp,
+        origPropVal = this.origPropVal,
+        promise,
+        self = this;
+
+      if (savingUser) {
+        return;
+      }
+      this.origPropVal = this.editedProp = null;
+      if ((this.user[propName] !== origPropVal)) {
+        savingUser = true;
+        promise = this.user.$save();
+        promise.then(null, function() {
+          var errData = arguments[0].data;
+          console.log(errData);
+          session.refreshUser().$promise.then(function() {
+            $scope.user = session.user;
+          });
+        });
+        promise.finally(function() {
+          savingUser = false;
+        });
+      }
+    };
+
+    $scope.revertEditing = function() {
+      console.log('revertEditing');
+      this.user[this.editedProp] = this.origPropVal;
+      this.origPropVal = this.editedProp = null;
+    };
 
     $scope.uploadPhoto = function() {
 

@@ -16,7 +16,7 @@
                    autocomplete
                    required
                    td-pristine-while-focused
-                   ng-valid-on-update="registered signinform.password.registered"/>
+                   td-valid-on-update="registered signinform.password.registered"/>
         </div>
         <div ng-show="signinform.email.$dirty && signinform.email.$error.required"
              class="alert alert-danger">Email required</div>
@@ -33,7 +33,7 @@
                    placeholder="Enter password"
                    ng-minlength="5"
                    td-pristine-while-focused
-                   ng-valid-on-update="registered signinform.email.registered"
+                   td-valid-on-update="registered signinform.email.registered"
                    required/>
         </div>
         <div ng-show="signinform.password.$dirty && signinform.password.$error.required"

@@ -16,6 +16,7 @@
     <!-- endbuild -->
     <!-- build:css({.tmp,app}) styles/style.css -->
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" href="/favicon.ico">
     <!-- endbuild -->
 </head>
 <body ng-app="parseAngularTodoodlyApp">
@@ -64,9 +65,9 @@
 
     <!-- build:js({.tmp,app}) scripts/parse.js -->
     <script src="scripts/modules/parseRestApi/parseRestApi.js"></script>
+    <script src="scripts/modules/parseRestApi/parseFunctionUtils.js"></script>
     <script src="scripts/modules/parseRestApi/parseConfig.js"></script>
     <script src="scripts/modules/parseRestApi/parseSession.js"></script>
-    <!--backburner: Fix interceptor so it configures $httpProvider from the parseRestApi module.-->
     <script src="scripts/modules/parseRestApi/parseRestApiInterceptor.js"></script>
     <script src="scripts/modules/parseRestApi/parseResourceFactory.js"></script>
     <script src="scripts/modules/parseRestApi/parseAbstractObjectFactory.js"></script>
@@ -74,7 +75,7 @@
     <script src="scripts/modules/parseRestApi/ParseUser.js"></script>
     <script src="scripts/modules/parseRestApi/parseRole.js"></script>
     <script src="scripts/modules/parseRestApi/parseFile.js"></script>
-    <script src="scripts/modules/parseRestApi/parseFunction.js"></script>
+    <script src="scripts/modules/parseRestApi/parseCloudFunction.js"></script>
     <script src="scripts/modules/parseRestApi/parseInitialize.js"></script>
     <!-- endbuild -->
 
@@ -100,6 +101,7 @@
     <script src="scripts/services/auth.js"></script>
     <script src="scripts/controllers/profile.js"></script>
     <script src="scripts/filters/iif.js"></script>
+    <script src="scripts/directives/tdEnter.js"></script>
     <!-- endbuild -->
 
     <!--devScripts-->

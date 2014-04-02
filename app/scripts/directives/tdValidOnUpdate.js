@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('parseAngularTodoodlyApp')
-  .directive('ngValidOnUpdate', function () {
+  .directive('tdValidOnUpdate', function () {
     return {
       restrict: 'A',
       require: 'ngModel',
@@ -9,8 +9,8 @@ angular.module('parseAngularTodoodlyApp')
 
 
         var setValid = function(value) {
-          //t0d0: Rewrite this as a self-defining function so it only does this heavy lifting once
-          var validatorsToSet = attrs.ngValidOnUpdate.split(' ');
+
+          var validatorsToSet = attrs.tdValidOnUpdate.split(' ');
           angular.forEach(validatorsToSet, function(validatorStr) {
             var validatorParts = validatorStr.split('.'),
               validator,

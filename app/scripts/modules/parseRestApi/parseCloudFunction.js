@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('parseRestApi')
-  .factory('parseFunction', function ($resource, parseConfig) {
-    var parseFunctionResource,
+  .factory('parseCloudFunction', function ($resource, parseConfig) {
+    var parseCloudResource,
       url = url = parseConfig.restApiBaseUrl + '/functions/:functionName',
       defaults = {functionName: '@functionName'},
       customMethods = {
@@ -11,13 +11,13 @@ angular.module('parseRestApi')
         }
       };
 
-    parseFunctionResource = $resource(url, defaults, customMethods);
+    parseCloudResource = $resource(url, defaults, customMethods);
 
-    parseFunctionResource.prototype = {};
+    parseCloudResource.prototype = {};
 
-    return function parseFunction(functionName, args) {
+    return function parseCloudFunction(functionName, args) {
       args = args || {};
       args.functionName = functionName;
-      return parseFunctionResource.cloudCall(args);
+      return parseCloudResource.cloudCall(args);
     };
   });

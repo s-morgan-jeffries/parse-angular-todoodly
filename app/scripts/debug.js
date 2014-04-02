@@ -1,5 +1,20 @@
 'use strict';
 
+var C1 = function() {},
+  C2 = function() {};
+
+C1.prototype.prop1 = false;
+C2.prototype = new C1();
+var src = new C2();
+src.prop2 = false;
+src.prop3 = false;
+src.prop4 = false;
+var dest = {
+  prop1: true,
+  prop2: true,
+  prop3: true
+};
+
 var $injector,
   $scope,
   Todo,
@@ -20,7 +35,7 @@ var $injector,
 var helloCloud,
   hello;
 
-var parseFunction;
+var parseCloudFunction;
 
 setTimeout(function() {
   var el = angular.element(document.body);
@@ -29,13 +44,16 @@ setTimeout(function() {
 
 //  helloCloud = $injector.get('helloCloud');
 //  hello = helloCloud();
-  parseFunction = $injector.get('parseFunction');
-  hello = parseFunction('hello');
+  parseCloudFunction = $injector.get('parseCloudFunction');
+  hello = parseCloudFunction('hello');
 //  userExists = $injector.get('userExists');
 //  exists = userExists('poopface@mon.key');
 
   session = $injector.get('session');
   User = $injector.get('User');
+  var $location = $injector.get('$location');
+  $location.path('/profile');
+  $location.replace();
 ////  var auth = $injector.get('auth');
 //  User.signIn('s.morgan.jeffries@gmail.com', 'password').$promise
 //    .then(function() {
