@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('parseAngularTodoodlyApp', [
-    'ngCookies',
-    'ngSanitize',
+//    'ngCookies',
+//    'ngSanitize',
     'ngRoute',
     'ngStorage',
     'ui.bootstrap',

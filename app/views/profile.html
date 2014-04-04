@@ -1,6 +1,6 @@
 <div class="row marketing">
     <form class="form-horizontal" role="form" name="profileform" novalidate>
-        <h3 class="font-grow">Account Details</h3>
+        <h3>Account Details</h3>
         <!--<div ng-show="profileform.$dirty && !!profileform.$error.registered"-->
              <!--class="alert alert-danger">Could not sign in. Verify that email and password are correct.</div>-->
         <!--Email-->
@@ -9,9 +9,9 @@
             <div class="col-xs-4" ng-hide="editedProp==='email'" ng-dblclick="editUser('email')">
                 <p class="form-control form-control--inactive">{{user.email}}</p>
             </div>
-            <div class="col-xs-3" ng-hide="editedProp==='email'">
-                <span class="glyphicon glyphicon-ok"></span>
-            </div>
+            <!--<div class="col-xs-3" ng-hide="editedProp==='email'">-->
+                <!--<span class="glyphicon glyphicon-ok"></span>-->
+            <!--</div>-->
             <div class="col-xs-9" ng-show="editedProp==='email'">
                 <input type="email"
                        id="profileform-email"
