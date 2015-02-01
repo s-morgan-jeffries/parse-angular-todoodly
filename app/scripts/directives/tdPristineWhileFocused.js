@@ -15,7 +15,7 @@ angular.module('parseAngularTodoodlyApp')
         var setDirty = function() {
           scope.$apply(function() {
             ctrl.$dirty = true;
-            ctrl.$prisine = false;
+            ctrl.$pristine = false;
           });
         };
 

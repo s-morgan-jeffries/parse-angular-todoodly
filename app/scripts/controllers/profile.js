@@ -1,12 +1,12 @@
 'use strict';
 
-var scope;
+//var scope;
 //var p;
 
 angular.module('parseAngularTodoodlyApp')
   .controller('ProfileCtrl', function ($scope, $modal, $location, session) {
 
-    scope = $scope;
+//    scope = $scope;
 
     var savingUser = false;
 
